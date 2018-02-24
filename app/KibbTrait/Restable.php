@@ -5,7 +5,7 @@
  * Date: 2/24/18
  * Time: 6:28 PM
  */
-namespace Kibb\KibbRestable;
+namespace Kibb\KibbTrait;
 
 
 use Illuminate\Http\Response as IlluminateResponse;
