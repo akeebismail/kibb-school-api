@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Kibb\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;

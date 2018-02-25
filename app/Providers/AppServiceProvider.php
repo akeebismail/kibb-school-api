@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Kibb\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
