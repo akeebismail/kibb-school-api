@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('state')->nullable();
             $table->string('country')->default('ng');
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kibb\Kibb;
+namespace Kibb\Kibb\Teacher;
 
 use Illuminate\Database\Eloquent\Model;
 
