@@ -21,6 +21,8 @@ class CreateStudentsTable extends Migration
             $table->integer('current_class')->default(0);
             $table->string('avatar')->dafautl('no-avatar.png');
             $table->unsignedInteger('position')->default(0);
+            $table->boolean('status')->default(true);
+            $table->boolean('suspended')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
