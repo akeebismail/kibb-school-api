@@ -7,74 +7,64 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="../../../../fonts.googleapis.com/cssff98.css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <link href="{{asset('fronts/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('fronts/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('fronts/plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('fronts/css/animate.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('fronts/css/style.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('fronts/css/style-responsive.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('front/css/theme/default.css')}}" rel="stylesheet" id="theme" />
+    <!-- ================== END BASE CSS STYLE ================== -->
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+    <link href="{{asset('fronts/plugins/jquery-jvectormap/jquery-jvectormap.css')}}" rel="stylesheet" />
+    <link href="{{asset('fronts/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css')}}" rel="stylesheet" />
+    <link href="{{asset('fronts/plugins/gritter/css/jquery.gritter.css')}}" rel="stylesheet" />
+    <!-- ================== END PAGE LEVEL STYLE ================== -->
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="{{asset('fronts//plugins/pace/pace.min.js')}}"></script>
+    <!-- ================== END BASE JS ================== -->
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        @yield('content')
-    </div>
-
+    @yield('main')
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="{{asset('fronts/plugins/jquery/jquery-1.9.1.min.js')}}"></script>
+    <script src="{{asset('fronts/plugins/jquery/jquery-migrate-1.1.0.min.js')}}"></script>
+    <script src="{{asset('fronts/plugins/jquery-ui/ui/minified/jquery-ui.min.js')}}"></script>
+    <script src="{{asset('fronts/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+    <!--[if lt IE 9]>
+    <script src="assets/crossbrowserjs/html5shiv.js"></script>
+    <script src="assets/crossbrowserjs/respond.min.js"></script>
+    <script src="assets/crossbrowserjs/excanvas.min.js"></script>
+    <![endif]-->
+    <script src="{{asset('fronts/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
+    <script src="{{asset('fronts//plugins/jquery-cookie/jquery.cookie.js')}}"></script>
+    <!-- ================== END BASE JS ================== -->
+
+    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+    <script src="{{asset('fronts/plugins/gritter/js/jquery.gritter.js')}}"></script>
+    <script src="{{asset('fronts/plugins/flot/jquery.flot.min.js')}}"></script>
+    <script src="{{asset('fronts/plugins/flot/jquery.flot.time.min.js')}}"></script>
+    <script src="{{asset('fronts/plugins/flot/jquery.flot.resize.min.js')}}"></script>
+    <script src="{{asset('fronts/plugins/flot/jquery.flot.pie.min.js')}}"></script>
+    <script src="{{asset('fronts/plugins/sparkline/jquery.sparkline.js')}}"></script>
+    <script src="{{asset('fronts/plugins/jquery-jvectormap/jquery-jvectormap.min.js')}}"></script>
+    <script src="{{asset('fronts/plugins/jquery-jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
+    <script src="{{asset('fronts/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
+    <script src="{{asset('fronts/js/dashboard.min.js')}}"></script>
+    <script src="{{asset('fronts/js/apps.min.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            App.init();
+            Dashboard.init();
+        });
+    </script>
+    <!-- ================== END PAGE LEVEL JS ================== -->
+
 </body>
 </html>
