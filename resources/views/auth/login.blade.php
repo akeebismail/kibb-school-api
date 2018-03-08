@@ -1,69 +1,77 @@
 @extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+@section('main')
+    <!-- begin #page-container -->
+    <div id="page-container" class="fade">
+        <!-- begin login -->
+        <div class="login login-with-news-feed">
+            <!-- begin news-feed -->
+            <div class="news-feed">
+                <div class="news-image">
+                    <img src="{{asset('fronts/img/login-bg/bg-7.jpg')}}" data-id="login-cover-image" alt="" />
+                </div>
+                <div class="news-caption">
+                    <h4 class="caption-title"><i class="fa fa-diamond text-success"></i> Announcing Kibb School web platform</h4>
+                    <p>
+                        Kibb School development
+                    </p>
                 </div>
             </div>
+            <!-- end news-feed -->
+            <!-- begin right-content -->
+            <div class="right-content">
+                <!-- begin login-header -->
+                <div class="login-header">
+                    <div class="brand">
+                        <span class="logo"></span> Kibb School
+                        <small>School web application</small>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-sign-in"></i>
+                    </div>
+                </div>
+                <!-- end login-header -->
+                <!-- begin login-content -->
+                <div class="login-content">
+                    <form action="{{route('login')}}" method="POST" class="margin-bottom-0">
+                        <div class="form-group m-b-15 {{ $errors->has('email')? 'has-error': '' }}">
+                            <input type="text" class="form-control input-lg" name="email" placeholder="Email Address" required />
+                            @if($errors->has('email'))
+                                <div class="has-error">
+                                    {{$errors->first('email')}}
+                                </div>
+                            @endif
+                        </div>
+                        <div class="form-group m-b-15 {{$errors->has('password')? 'has-error': ''}}">
+                            <input type="password" class="form-control input-lg" name="password" placeholder="Password" required />
+                            @if($errors->has('password'))
+                                <div class="has-error">
+                                    {{$errors->first('password')}}
+                                </div>
+                                @endif
+                        </div>
+                        <div class="checkbox m-b-30">
+                            <label>
+                                <input type="checkbox" /> Remember Me
+                            </label>
+                        </div>
+                        <div class="login-buttons">
+                            <button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>
+                        </div>
+                        <div class="m-t-20 m-b-40 p-b-40 text-inverse">
+                            Not a member yet? Click <a href="{{route('register')}}" class="text-success">here</a> to register.
+                        </div>
+                        <hr />
+                        <p class="text-center">
+                            &copy; Kibb Admin All Right Reserved 2018
+                        </p>
+                    </form>
+                </div>
+                <!-- end login-content -->
+            </div>
+            <!-- end right-container -->
         </div>
+        <!-- end login -->
     </div>
-</div>
+    <!-- end page container -->
 @endsection

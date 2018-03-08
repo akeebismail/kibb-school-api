@@ -13,14 +13,7 @@ class CreateClassesTable extends Migration
      */
     public function up()
     {
-        Schema::create('class_type', function (Blueprint $table){
-            $table->increments('id');
-            $table->string('name');
-            $table->string('slug');
-            $table->text('details')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
-        });
+
         Schema::create('classes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -40,7 +33,6 @@ class CreateClassesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('class_type');
         Schema::dropIfExists('classes');
     }
 }
