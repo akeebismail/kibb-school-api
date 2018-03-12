@@ -15,7 +15,13 @@ class CreateSessionsTable extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name')->default('school-sessions');
+            $table->string('slug');
+            $table->date('start_day');
+            $table->date('end_day');
+            $table->text('notification')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
