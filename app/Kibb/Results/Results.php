@@ -8,5 +8,4 @@
 
 abstract class Results{
     protected $results ;
-
 }
