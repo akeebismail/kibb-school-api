@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Kibb School MS'),
 
     /*
     |--------------------------------------------------------------------------
@@ -176,7 +176,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         Kibb\Providers\EventServiceProvider::class,
         Kibb\Providers\RouteServiceProvider::class,
-
+        //Repository Provider
+        Kibb\Providers\KibbRepositoryProvider::class,
     ],
 
     /*
