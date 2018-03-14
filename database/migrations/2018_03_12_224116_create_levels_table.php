@@ -19,6 +19,7 @@ class CreateLevelsTable extends Migration
             $table->string('slug');
             $table->text('details')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

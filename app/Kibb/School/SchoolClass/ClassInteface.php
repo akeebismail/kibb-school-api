@@ -12,6 +12,6 @@ use Kibb\Kibb\Base\BaseSchool;
 interface ClassInteface extends BaseSchool{
 
     public function createClass($data = []);
-    public function updateClass($data =[]);
 
+    public function updateClass($data =[]);
 }
