@@ -6,11 +6,20 @@
  * Time: 12:51 AM
  */
 
-namespace Kibb\Kibb\School\Session\Term;
+namespace Kibb\Kibb\School\Term;
 
-use Kibb\Base\BaseSchool;
+use Kibb\Kibb\Base\BaseSchool;
 
 interface TermInterface extends BaseSchool{
+    public function createTerms($data = []);
 
+    public function updateSession($data = []);
 
+    public function deleteTerms(int $id);
+
+    public function termSessions();
+
+    public function currentSessionTerm();
+
+    public function currentTerm();
 }

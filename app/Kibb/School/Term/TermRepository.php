@@ -7,8 +7,8 @@
  */
 namespace Kibb\Kibb\School\Term;
 use Illuminate\Database\Eloquent\Model;
-use Kibb\Base\KibbBaseRepository;
-use Kibb\Kibb\School\Session\Term\TermInterface;
+use Illuminate\Database\QueryException;
+use Kibb\Kibb\Base\KibbBaseRepository;
 
 class TermRepository extends KibbBaseRepository implements TermInterface
 {
@@ -17,5 +17,39 @@ class TermRepository extends KibbBaseRepository implements TermInterface
     {
         parent::__construct($model);
         $this->model = $model;
+    }
+
+    public function createTerms($data = [])
+    {
+        try{
+            return $this->create($data);
+        }catch (QueryException $exception){
+            throw new TermException($exception->getMessage(),$exception->getCode());
+        }
+    }
+
+    public function updateSession($data = [])
+    {
+        // TODO: Implement updateSession() method.
+    }
+
+    public function deleteTerms(int $id)
+    {
+        // TODO: Implement deleteTerms() method.
+    }
+
+    public function termSessions()
+    {
+        // TODO: Implement termSessions() method.
+    }
+
+    public function currentSessionTerm()
+    {
+        // TODO: Implement currentSessionTerm() method.
+    }
+
+    public function currentTerm()
+    {
+        // TODO: Implement currentTerm() method.
     }
 }

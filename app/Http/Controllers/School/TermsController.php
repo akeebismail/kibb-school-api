@@ -4,9 +4,17 @@ namespace Kibb\Http\Controllers\School;
 
 use Illuminate\Http\Request;
 use Kibb\Http\Controllers\Controller;
+use Kibb\Kibb\School\Term\TermCreateRequest;
+use Kibb\Kibb\School\Term\TermRepository;
 
 class TermsController extends Controller
 {
+
+    public function __construct(TermRepository $repository)
+    {
+        $this->_repo = $repository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,28 +33,38 @@ class TermsController extends Controller
     public function create()
     {
         //
+        return view('term/create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param TermCreateRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(TermCreateRequest $request)
     {
-        //
+        $data = [];
+        $data['name'] = $request->name;
+        $data['slug'] = str_slug($request->name,'-');
+        $data['session_id'] = $request->session_id;
+        $data['start_day'] = $request->start_day;
+        $data['end_day'] = $request->end_day;
+        $data['notification'] = str_random(100);
+
+        return $this->respond($this->_repo->createTerms($data));
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
         //
+        return $this->respond($this->_repo->find($id));
     }
 
     /**

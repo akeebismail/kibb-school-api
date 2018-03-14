@@ -23,3 +23,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('sessions','School\SessionsController');
+Route::resource('terms','School\TermsController');

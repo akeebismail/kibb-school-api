@@ -5,7 +5,7 @@ namespace Kibb\Providers;
 use Illuminate\Support\ServiceProvider;
 use Kibb\Kibb\School\Session\SessionInterface;
 use Kibb\Kibb\School\Session\SessionRepo;
-use Kibb\Kibb\School\Session\Term\TermInterface;
+use Kibb\Kibb\School\Term\TermInterface;
 use Kibb\Kibb\School\Term\TermRepository;
 
 class KibbRepositoryProvider extends ServiceProvider
@@ -29,6 +29,6 @@ class KibbRepositoryProvider extends ServiceProvider
     {
         //
         $this->app->bind(SessionInterface::class,SessionRepo::class);
-        $this->app->bind(TermRepository::class, TermInterface::class);
+        $this->app->bind(TermInterface::class, TermRepository::class);
     }
 }
