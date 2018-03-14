@@ -8,7 +8,7 @@
 
 namespace Kibb\Kibb\School\Session;
 
-use Kibb\Base\BaseSchool;
+use Kibb\Kibb\Base\BaseSchool;
 
 interface SessionInterface extends BaseSchool {
 
@@ -18,7 +18,7 @@ interface SessionInterface extends BaseSchool {
 
     public function sessionTerms();
 
-    public function deleteSession();
+    public function deleteSession(int $id);
 
     public function startSession();
     public function endSession();

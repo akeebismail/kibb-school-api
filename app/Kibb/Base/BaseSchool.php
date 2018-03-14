@@ -5,7 +5,7 @@
  * Date: 3/13/18
  * Time: 12:01 AM
  */
-namespace Kibb\Base;
+namespace Kibb\Kibb\Base;
 
 interface BaseSchool
 {

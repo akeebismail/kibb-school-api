@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('token',function (){
+    return csrf_token();
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('sessions','School\SessionsController');

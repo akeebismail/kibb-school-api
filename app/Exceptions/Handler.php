@@ -4,6 +4,7 @@ namespace Kibb\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Kibb\Http\Middleware\VerifyCsrfToken;
 
 class Handler extends ExceptionHandler
 {
@@ -14,6 +15,7 @@ class Handler extends ExceptionHandler
      */
     protected $dontReport = [
         //
+        VerifyCsrfToken::class,
     ];
 
     /**

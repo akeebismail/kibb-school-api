@@ -7,16 +7,16 @@
  */
 namespace Kibb\Kibb\School\Session;
 
-use Kibb\Base\KibbFormRequest;
+use Kibb\Kibb\Base\KibbFormRequest;
 
 class CreateSessionRequest extends KibbFormRequest{
 
     public function rules(){
 
         return [
-          'name' => ['required|string|max:255'],
-          'start_day' => ['required|date'],
-          'end_day'  => ['required|date'],
+          'name' => ['required','string','max:255'],
+          'start_day' => ['required','date'],
+          'end_day'  => ['required','date'],
         ];
     }
 }

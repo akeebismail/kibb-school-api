@@ -5,7 +5,7 @@
  * Date: 3/13/18
  * Time: 12:05 AM
  */
-namespace Kibb\Base;
+namespace Kibb\Kibb\Base;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,7 +24,7 @@ class KibbBaseRepository implements BaseSchool
 
     public function create($data = [])
     {
-        return $this->model->save($data);
+        return $this->model->create($data);
     }
 
     public function update($data = [])

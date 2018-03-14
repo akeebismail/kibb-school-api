@@ -4,6 +4,7 @@ namespace Kibb\Http\Controllers\School;
 
 use Illuminate\Http\Request;
 use Kibb\Http\Controllers\Controller;
+use Kibb\Kibb\School\Session\CreateSessionRequest;
 use Kibb\Kibb\School\Session\SessionRepo;
 
 class SessionsController extends Controller
@@ -33,17 +34,25 @@ class SessionsController extends Controller
     public function create()
     {
         //
+        return view('home');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CreateSessionRequest $request
+     * @return
      */
-    public function store(Request $request)
+    public function store(CreateSessionRequest $request)
     {
         //
+        $data = [];
+        $data['name'] = $request->name;
+        $data['slug'] = str_slug($request->name,'-');
+        $data['start_day'] = $request->start_day;
+        $data['end_day'] = $request->end_day;
+         return $this->_repo->createSession($data);
+
     }
 
     /**
@@ -55,6 +64,7 @@ class SessionsController extends Controller
     public function show($id)
     {
         //
+        return $this->_repo->find($id);
     }
 
     /**
