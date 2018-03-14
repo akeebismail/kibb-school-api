@@ -51,6 +51,7 @@ class LevelsController extends Controller
     public function store(CreateLevelRequest $request)
     {
         //
+
         $data = [];
         $data['name'] = $request->name;
         $data['slug'] = str_slug($request->name,'-');
@@ -107,7 +108,10 @@ class LevelsController extends Controller
     public function destroy($id) : JsonResponse
     {
         //
-        $this->_repo->deleteLevel($id);
-        return $this->respondWithSuccess('Level Successfully Deleted');
+        if ($this->_repo->deleteLevel($id)){
+
+            return $this->respondWithSuccess('Level Successfully Deleted');
+        }
+        return $this->respondNotFound();
     }
 }

@@ -12,11 +12,12 @@ use Illuminate\Database\QueryException;
 use Kibb\Kibb\Base\KibbBaseRepository;
 
 class LevelRepository extends KibbBaseRepository implements LevelInterface{
-
+    protected $model;
 
     public function __construct(Levels $model)
     {
         parent::__construct($model);
+        $this->model = $model;
     }
 
     public function createLevel($data = [])
@@ -61,12 +62,13 @@ class LevelRepository extends KibbBaseRepository implements LevelInterface{
     public function deleteLevel(int $id)
     {
         try{
-            return $this->delete($id);
+            return $this->model->find($id)->delete();
         }catch (QueryException $exception){
             throw new LevelExceptions(
                 $exception->getMessage().'  '. $exception->getSql(),
                 $exception->getCode()
             );
+        } catch (\Exception $e) {
         }
     }
 

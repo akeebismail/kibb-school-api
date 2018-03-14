@@ -17,6 +17,9 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::resource('sessions','School\SessionsController');
-Route::resource('levels','School\LevelsController');
+Route::namespace('School')->group(function (){
+    Route::resource('sessions','SessionsController');
+    Route::resource('levels','LevelsController');
+    Route::resource('types','ClassTypesController');
+    Route::post('updateTypes/{id}','ClassTypesController@update');
+});

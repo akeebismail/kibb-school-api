@@ -9,12 +9,22 @@ namespace Kibb\Kibb\Base;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Kibb\KibbTrait\Restable;
 
 class KibbFormRequest extends FormRequest
 {
+    use Restable;
     public function authorize(){
 
         //return Auth::check();
         return true;
+    }
+
+    public function forbiddenResponse(){
+        return $this->respondForbidden();
+    }
+
+    public function response( $errors=[]){
+        return $this->respondUnprocessableEntity($errors);
     }
 }
