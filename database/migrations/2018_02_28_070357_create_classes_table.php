@@ -20,7 +20,7 @@ class CreateClassesTable extends Migration
             $table->string('slug');
             $table->string('code');
             $table->unsignedInteger('teacher_id')->default(0);
-            $table->unsignedInteger('class_type_id')->default(0);
+            $table->unsignedInteger('level_id')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

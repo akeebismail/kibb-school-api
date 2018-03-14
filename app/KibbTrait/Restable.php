@@ -12,7 +12,7 @@ use Illuminate\Http\Response as IlluminateResponse;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Response;
 /**
- * Class API
+ * Response API
  * @package Kibb\KibbRestable
  *
  */
