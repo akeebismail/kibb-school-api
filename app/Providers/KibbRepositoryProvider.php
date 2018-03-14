@@ -3,6 +3,12 @@
 namespace Kibb\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Kibb\Kibb\School\Level\LevelInterface;
+use Kibb\Kibb\School\Level\LevelRepository;
+use Kibb\Kibb\School\SchoolClass\ClassInterface;
+use Kibb\Kibb\School\SchoolClass\ClassRepository;
+use Kibb\Kibb\School\SchoolClass\Type\ClassTypeInterface;
+use Kibb\Kibb\School\SchoolClass\Type\ClassTypeRepo;
 use Kibb\Kibb\School\Session\SessionInterface;
 use Kibb\Kibb\School\Session\SessionRepo;
 use Kibb\Kibb\School\Term\TermInterface;
@@ -30,5 +36,8 @@ class KibbRepositoryProvider extends ServiceProvider
         //
         $this->app->bind(SessionInterface::class,SessionRepo::class);
         $this->app->bind(TermInterface::class, TermRepository::class);
+        $this->app->bind(LevelInterface::class,LevelRepository::class);
+        $this->app->bind(ClassInterface::class, ClassRepository::class);
+        $this->app->bind(ClassTypeInterface::class, ClassTypeRepo::class);
     }
 }

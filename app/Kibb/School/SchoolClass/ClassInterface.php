@@ -9,9 +9,9 @@ namespace Kibb\Kibb\School\SchoolClass;
 
 use Kibb\Kibb\Base\BaseSchool;
 
-interface ClassInteface extends BaseSchool{
+interface ClassInterface extends BaseSchool{
 
     public function createClass($data = []);
 
-    public function updateClass($data =[]);
+    public function updateClass(int $id,$data =[]);
 }

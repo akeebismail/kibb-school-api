@@ -17,6 +17,9 @@ class ClassTypeRepo extends KibbBaseRepository implements ClassTypeInterface{
         parent::__construct($model);
     }
 
+    public function listLevel(string $order= 'id', string $sort = 'desc'){
+        return $this->all('*',$order,$sort);
+    }
     public function createType($data = [])
     {
         return $this->create($data);
@@ -24,15 +27,20 @@ class ClassTypeRepo extends KibbBaseRepository implements ClassTypeInterface{
 
     public function updateType($data = [])
     {
-        return $this->update();
+        return $this->update($data);
     }
 
     public function levels()
     {
-        return $this->model->levels;
+        return $this->model->level;
     }
 
-    public function classes()
+    public function classes(int $id)
     {
+        return $this->find($id)->classes;
+    }
+    public function attachTypeLevel()
+    {
+
     }
 }

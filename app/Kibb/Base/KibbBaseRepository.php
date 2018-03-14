@@ -27,9 +27,9 @@ class KibbBaseRepository implements BaseSchool
         return $this->model->create($data);
     }
 
-    public function update($data = [])
+    public function update(int $id,$data = [])
     {
-        return $this->model->update($data);
+        return $this->find($id)->update($data);
     }
 
     public function find(int $id)

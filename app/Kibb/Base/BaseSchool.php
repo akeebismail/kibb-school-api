@@ -11,7 +11,7 @@ interface BaseSchool
 {
     public function create($data = []);
 
-    public function update($data = []);
+    public function update(int $id,$data = []);
 
     public function all($columns = ['*'], string $orderBy = 'id', string $sortBy = 'asc');
 

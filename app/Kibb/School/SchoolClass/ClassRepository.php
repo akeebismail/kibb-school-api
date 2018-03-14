@@ -10,7 +10,7 @@ namespace Kibb\Kibb\School\SchoolClass;
 use Illuminate\Database\QueryException;
 use Kibb\Kibb\Base\KibbBaseRepository;
 
-class ClassRepository extends KibbBaseRepository {
+class ClassRepository extends KibbBaseRepository implements ClassInterface {
     protected $model;
 
     public function __construct(Classes$model)
@@ -27,9 +27,9 @@ class ClassRepository extends KibbBaseRepository {
         }
     }
 
-    public function updateClass($data = []){
+    public function updateClass(int $id,$data = []){
         try{
-            return $this->update($data);
+            return $this->find($id)->update($data);
         }catch (QueryException $exception){
             throw new ClassExectionHandler($exception->getMessage().' '.$exception->getSql(),$exception->getCode());
         }

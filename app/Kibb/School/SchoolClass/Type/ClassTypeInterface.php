@@ -17,5 +17,7 @@ interface ClassTypeInterface extends BaseSchool
 
     public function levels();
 
-    public function classes();
+    public function classes(int $id);
+
+    public function attachTypeLevel();
 }

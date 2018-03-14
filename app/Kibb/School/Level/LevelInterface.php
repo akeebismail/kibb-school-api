@@ -11,6 +11,7 @@ use Kibb\Kibb\Base\BaseSchool;
 
 interface LevelInterface extends BaseSchool{
 
+    public function listLevel(string $order = 'id',string $sort = 'desc', $except =[]);
     public function createLevel($data = []);
 
     public function updateLevel(int $id, $data = []);

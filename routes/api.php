@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('sessions','School\SessionsController');
+Route::resource('levels','School\LevelsController');

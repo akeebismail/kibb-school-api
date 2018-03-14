@@ -7,10 +7,17 @@
  */
 namespace Kibb\Kibb\School\Level;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
 use Kibb\Kibb\Base\KibbBaseRepository;
 
 class LevelRepository extends KibbBaseRepository implements LevelInterface{
+
+
+    public function __construct(Levels $model)
+    {
+        parent::__construct($model);
+    }
 
     public function createLevel($data = [])
     {
@@ -24,7 +31,10 @@ class LevelRepository extends KibbBaseRepository implements LevelInterface{
     public function updateLevel(int $id, $data = [])
     {
         try{
-            return $this->model->find($id)->update($data);
+            $level = [];
+            $level['name'] = $data['name'];
+            $level['details'] = $data['details'];
+            return $this->model->find($id)->update($level);
         }catch (QueryException $exception){
             throw new LevelExceptions(
                 $exception->getMessage().' '.$exception->getSql(),
@@ -58,5 +68,10 @@ class LevelRepository extends KibbBaseRepository implements LevelInterface{
                 $exception->getCode()
             );
         }
+    }
+
+    public function listLevel(string $order = 'id', string $sort = 'desc', $except = [])
+    {
+        return $this->model->orderBy($order, $sort)->get()->except($except);
     }
 }
