@@ -21,5 +21,5 @@ Route::namespace('School')->group(function (){
     Route::resource('sessions','SessionsController');
     Route::resource('levels','LevelsController');
     Route::resource('types','ClassTypesController');
-    Route::post('updateTypes/{id}','ClassTypesController@update');
+    Route::resource('classes','ClassesController');
 });

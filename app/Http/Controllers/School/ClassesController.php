@@ -4,17 +4,27 @@ namespace Kibb\Http\Controllers\School;
 
 use Illuminate\Http\Request;
 use Kibb\Http\Controllers\Controller;
+use Kibb\Kibb\School\SchoolClass\ClassRepository;
+use Kibb\Kibb\School\SchoolClass\CreateClassRequest;
 
 class ClassesController extends Controller
 {
+    protected $_repo;
+    public function __construct(ClassRepository $repository)
+    {
+        $this->_repo = $repository;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
         //
+        return $this->respond($this->_repo->all());
+
     }
 
     /**
@@ -30,12 +40,13 @@ class ClassesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CreateClassRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(CreateClassRequest $request)
     {
         //
+        return $this->respond($this->_repo->createClass($request->all()));
     }
 
     /**

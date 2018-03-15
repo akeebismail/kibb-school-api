@@ -13,7 +13,7 @@ use Kibb\Kibb\School\SchoolClass\Type\ClassType;
 
 class Classes extends Model{
 
-    protected $fillable = ['name','slug','code','teacher_id','level_id','class_type_id'];
+    protected $fillable = ['name','slug','code','level_id','class_type_id'];
 
     public function level(){
 

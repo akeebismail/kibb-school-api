@@ -5,6 +5,7 @@ use Kibb\Kibb\School\Session\Sessions;
 use Kibb\Kibb\School\Term\Terms;
 use Kibb\Kibb\School\Level\Levels;
 use Kibb\Kibb\School\SchoolClass\Type\ClassType;
+use Kibb\Kibb\School\SchoolClass\Classes;
 
 $factory->define(Kibb\User::class, function (Faker $faker) {
     return [
@@ -66,5 +67,16 @@ $factory->define(ClassType::class,function (Faker $faker){
         'slug' => str_slug($name,'-'),
         'description' => $faker->paragraph,
         'level_id' => Levels::inRandomOrder()->first()->id
+    ];
+});
+
+$factory->define(Classes::class, function (Faker $faker){
+    $name = $faker->word;
+    return [
+        'name' => $name,
+        'slug' => str_slug($name,'-'),
+        'code' => $faker->word,
+        'level_id' => Levels::inRandomOrder()->first()->id,
+        'class_type_id' => ClassType::inRandomOrder()->first()->id,
     ];
 });
