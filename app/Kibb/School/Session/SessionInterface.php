@@ -11,12 +11,12 @@ namespace Kibb\Kibb\School\Session;
 use Kibb\Kibb\Base\BaseSchool;
 
 interface SessionInterface extends BaseSchool {
-
+    public function sessions(string $order = 'id', string $sort = 'desc', $except= []);
     public function createSession($data = []);
 
-    public function updateSession($data = []);
+    public function updateSession(int $id,$data = []);
 
-    public function sessionTerms();
+    public function sessionTerms(int $id);
 
     public function deleteSession(int $id);
 

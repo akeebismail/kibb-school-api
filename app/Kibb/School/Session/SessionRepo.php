@@ -10,6 +10,7 @@
 namespace Kibb\Kibb\School\Session;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Kibb\Kibb\Base\KibbBaseRepository;
 
@@ -21,6 +22,10 @@ class SessionRepo extends KibbBaseRepository implements SessionInterface
     {
         parent::__construct($model);
         $this->model = $model;
+    }
+    public function sessions(string $order='id',string $sort = 'desc', $except =[]){
+
+        return $this->model->orderby($order, $sort)->get()->except($except);
     }
 
     /**
@@ -42,18 +47,29 @@ class SessionRepo extends KibbBaseRepository implements SessionInterface
      * @param array $data
      * @return bool
      */
-    public function updateSession($data = [])
+    public function updateSession(int $id,$data = [])
     {
         try{
-            return $this->update($data);
+            $session = $this->model->find($id);
+            $session->name = $data['name'];
+            $session->slug = str_slug($data['name'],'-');
+            $session->start_day = $data['start_day'];
+            $session->end_day = $data['end_day'];
+            $session->notification = $data['notification'];
+            $session->update();
+            return $session;
         }catch (QueryException $exception){
             throw new CreateSessionException("Cannot update Session now");
+        }catch (ModelNotFoundException $exception){
+            throw new SesseionNotFoundException(
+                $exception->getMessage().' '.$exception->getModel()
+            );
         }
     }
 
-    public function sessionTerms()
+    public function sessionTerms( int $id)
     {
-        return $this->model->terms;
+        return $this->model->find($id)->terms;
     }
 
     public function deleteSession(int $id)

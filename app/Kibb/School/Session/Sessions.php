@@ -3,6 +3,7 @@
 namespace Kibb\Kibb\School\Session;
 
 use Illuminate\Database\Eloquent\Model;
+use Kibb\Kibb\School\Term\Terms;
 
 class Sessions extends Model
 {

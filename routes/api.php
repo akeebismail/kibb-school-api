@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::namespace('School')->group(function (){
     Route::resource('sessions','SessionsController');
+    Route::get('sessions/terms/{id}', 'SessionsController@sessionTerms');
     Route::resource('levels','LevelsController');
     Route::resource('types','ClassTypesController');
     Route::resource('classes','ClassesController');
