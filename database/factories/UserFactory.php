@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use Kibb\Kibb\School\Session\Sessions;
+use Kibb\Kibb\School\Session\Session;
 use Kibb\Kibb\School\Term\Terms;
 use Kibb\Kibb\School\Level\Levels;
 use Kibb\Kibb\School\SchoolClass\Type\ClassType;
@@ -27,7 +27,7 @@ $factory->define(Kibb\User::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(Sessions::class, function (Faker $faker){
+$factory->define(Session::class, function (Faker $faker){
     $name = $faker->sentence;
    return [
        'name' => $name,
@@ -40,11 +40,11 @@ $factory->define(Sessions::class, function (Faker $faker){
 
 $factory->define(Terms::class, function (Faker $faker){
     $name = $faker->name;
-     factory(Sessions::class, 3)->create();
+     factory(Session::class, 3)->create();
     return [
         'name' => $name,
         'slug' => str_slug($name, '-'),
-        'session_id' => Sessions::inRandomOrder()->first()->id,
+        'session_id' => Session::inRandomOrder()->first()->id,
         'start_day' => $faker->date('Y-m-d'),
         'end_day' => $faker->date('Y-m-d'),
         'notification' => $faker->paragraph

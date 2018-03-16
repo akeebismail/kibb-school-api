@@ -18,7 +18,7 @@ class SessionRepo extends KibbBaseRepository implements SessionInterface
 {
 
     protected $model ;
-    public function __construct(Sessions $model)
+    public function __construct(Session $model)
     {
         parent::__construct($model);
         $this->model = $model;
@@ -81,7 +81,7 @@ class SessionRepo extends KibbBaseRepository implements SessionInterface
     {
         // TODO: Implement startSession() method.
     }
-
+a
     public function endSession()
     {
         // TODO: Implement endSession() method.

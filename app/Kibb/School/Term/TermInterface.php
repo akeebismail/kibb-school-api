@@ -11,13 +11,14 @@ namespace Kibb\Kibb\School\Term;
 use Kibb\Kibb\Base\BaseSchool;
 
 interface TermInterface extends BaseSchool{
+    public function terms(string $order = 'id', string $sort = 'desc');
     public function createTerms($data = []);
 
-    public function updateSession($data = []);
+    public function updateTerm(int $id,$data = []);
 
-    public function deleteTerms(int $id);
+    public function deleteTerm(int $id);
 
-    public function termSessions();
+    public function termSession(int $id);
 
     public function currentSessionTerm();
 

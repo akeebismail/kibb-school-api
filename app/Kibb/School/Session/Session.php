@@ -5,7 +5,7 @@ namespace Kibb\Kibb\School\Session;
 use Illuminate\Database\Eloquent\Model;
 use Kibb\Kibb\School\Term\Terms;
 
-class Sessions extends Model
+class Session extends Model
 {
     //
     protected $fillable = ['name','slug','start_day','end_day','notification'];

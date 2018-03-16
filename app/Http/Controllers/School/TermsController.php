@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Kibb\Http\Controllers\Controller;
 use Kibb\Kibb\School\Term\TermCreateRequest;
 use Kibb\Kibb\School\Term\TermRepository;
+use Kibb\Kibb\School\Term\UpdateTermRequest;
 
 class TermsController extends Controller
 {
@@ -18,23 +19,14 @@ class TermsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
         //
+        return $this->respond($this->_repo->terms());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-        return view('term/create');
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -67,37 +59,34 @@ class TermsController extends Controller
         return $this->respond($this->_repo->find($id));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param UpdateTermRequest $request
+     * @param  int $id
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTermRequest $request, $id)
     {
         //
+       return $this->respond( $this->_repo->updateTerm($id, $request->all()));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  int $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        //
+        if ($this->_repo->deleteTerm($id)){
+            return $this->respondWithSuccess('term successfully destroyed');
+        }
+    }
+
+    public function termSession($id){
+        return $this->respond($this->_repo->termSession($id));
     }
 }
