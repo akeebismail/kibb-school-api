@@ -24,7 +24,9 @@ Route::namespace('School')->group(function (){
     Route::get('term/{id}/session','TermsController@termSession');
     Route::resource('levels','LevelsController');
     Route::resource('types','ClassTypesController');
+    Route::get('type/{id}/class','ClassTypesController@classType');
     Route::resource('classes','ClassesController');
+    Route::get('class/{id}/type','ClassesController@typeClass');
     Route::resource('rooms','ClassRoomController');
     Route::resource('subjects','SubjectController');
 });

@@ -55,7 +55,7 @@ class ClassTypeRepo extends KibbBaseRepository implements ClassTypeInterface{
 
     public function classes(int $id)
     {
-        return $this->find($id)->classes;
+        return $this->model->find($id)->classes;
     }
     public function attachTypeLevel()
     {

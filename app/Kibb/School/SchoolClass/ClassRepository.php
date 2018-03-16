@@ -19,7 +19,9 @@ class ClassRepository extends KibbBaseRepository implements ClassInterface {
         parent::__construct($model);
         $this->model = $model;
     }
-
+    public function classes(string  $order = 'id',string $sort =' desc', $except =[]){
+        return $this->model->find($order, $sort)->get();
+    }
     public function createClass($data =[]){
         try{
             $class = [];
@@ -36,10 +38,31 @@ class ClassRepository extends KibbBaseRepository implements ClassInterface {
 
     public function updateClass(int $id,$data = []){
         try{
-            return $this->find($id)->update($data);
+            $class = $this->model->find($id);
+            $class->name = $data['name'];
+            $class->slug = str_slug($data['name'],'-');
+            $class->code = $data['code'];
+            $class->level_id = $data['level'];
+            $class->class_type_id = $data['class_type'];
+            $class->update();
+            return $class;
         }catch (QueryException $exception){
             throw new ClassExectionHandler($exception->getMessage().' '.$exception->getSql(),$exception->getCode());
         }
+    }
+
+    public function getClass(int $id){
+
+        return $this->find($id);
+    }
+
+    public function delete(int $id)
+    {
+        return $this->model->find($id)->delete();
+    }
+
+    public function classType( int $id){
+        return $this->model->find($id)->classType;
     }
 
 }
