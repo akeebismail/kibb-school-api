@@ -9,7 +9,9 @@ namespace Kibb\Kibb\School\SchoolClass;
 
 use Illuminate\Database\Eloquent\Model;
 use Kibb\Kibb\School\Level\Levels;
+use Kibb\Kibb\School\SchoolClass\Rooms\ClassRoom;
 use Kibb\Kibb\School\SchoolClass\Type\ClassType;
+use Kibb\Kibb\School\Subject\Subject;
 
 class Classes extends Model{
 
@@ -25,6 +27,10 @@ class Classes extends Model{
     }
 
     public function classRoom(){
-        return $this->hasMany('');
+        return $this->hasMany(ClassRoom::class);
+    }
+
+    public function subjects(){
+        return $this->hasMany(Subject::class);
     }
 }

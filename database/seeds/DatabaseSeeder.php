@@ -6,6 +6,7 @@ use Kibb\Kibb\School\Term\Terms;
 use Kibb\Kibb\School\Level\Levels;
 use Kibb\Kibb\School\SchoolClass\Type\ClassType;
 use Kibb\Kibb\School\SchoolClass\Classes;
+use Kibb\Kibb\School\Subject\Subject;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -16,10 +17,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
+
         factory(User::class, 5)->create();
         factory(Terms::class, 3)->create();
         factory(Levels::class, 4)->create();
         factory(ClassType::class, 5)->create();
         factory(Classes::class, 6)->create();
+        factory(Subject::class, 10)->create();
     }
 }

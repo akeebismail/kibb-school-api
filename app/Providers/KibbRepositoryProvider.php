@@ -13,6 +13,8 @@ use Kibb\Kibb\School\SchoolClass\Type\ClassTypeInterface;
 use Kibb\Kibb\School\SchoolClass\Type\ClassTypeRepo;
 use Kibb\Kibb\School\Session\SessionInterface;
 use Kibb\Kibb\School\Session\SessionRepo;
+use Kibb\Kibb\School\Subject\SUbjectInterface;
+use Kibb\Kibb\School\Subject\SubjectRepository;
 use Kibb\Kibb\School\Term\TermInterface;
 use Kibb\Kibb\School\Term\TermRepository;
 
@@ -42,5 +44,6 @@ class KibbRepositoryProvider extends ServiceProvider
         $this->app->bind(ClassInterface::class, ClassRepository::class);
         $this->app->bind(ClassTypeInterface::class, ClassTypeRepo::class);
         $this->app->bind(ClassRoomInterface::class,ClassRoomRepository::class);
+        $this->app->bind(SUbjectInterface::class, SubjectRepository::class);
     }
 }

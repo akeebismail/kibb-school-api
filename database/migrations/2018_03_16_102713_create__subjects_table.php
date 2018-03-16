@@ -13,13 +13,13 @@ class CreateSubjectsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('subjects');
         Schema::create('subjects', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('slug');
-            $table->string('code');
             $table->text('details')->nullable();
-            $table->unsignedInteger('level_id');
+            $table->integer('level_id')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

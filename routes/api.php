@@ -23,5 +23,5 @@ Route::namespace('School')->group(function (){
     Route::resource('types','ClassTypesController');
     Route::resource('classes','ClassesController');
     Route::resource('rooms','ClassRoomController');
-    
+    Route::resource('subjects','SubjectController');
 });
