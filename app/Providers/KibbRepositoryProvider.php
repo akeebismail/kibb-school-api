@@ -7,6 +7,8 @@ use Kibb\Kibb\School\Level\LevelInterface;
 use Kibb\Kibb\School\Level\LevelRepository;
 use Kibb\Kibb\School\SchoolClass\ClassInterface;
 use Kibb\Kibb\School\SchoolClass\ClassRepository;
+use Kibb\Kibb\School\SchoolClass\Rooms\ClassRoomInterface;
+use Kibb\Kibb\School\SchoolClass\Rooms\ClassRoomRepository;
 use Kibb\Kibb\School\SchoolClass\Type\ClassTypeInterface;
 use Kibb\Kibb\School\SchoolClass\Type\ClassTypeRepo;
 use Kibb\Kibb\School\Session\SessionInterface;
@@ -39,5 +41,6 @@ class KibbRepositoryProvider extends ServiceProvider
         $this->app->bind(LevelInterface::class,LevelRepository::class);
         $this->app->bind(ClassInterface::class, ClassRepository::class);
         $this->app->bind(ClassTypeInterface::class, ClassTypeRepo::class);
+        $this->app->bind(ClassRoomInterface::class,ClassRoomRepository::class);
     }
 }

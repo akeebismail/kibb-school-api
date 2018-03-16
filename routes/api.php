@@ -22,4 +22,6 @@ Route::namespace('School')->group(function (){
     Route::resource('levels','LevelsController');
     Route::resource('types','ClassTypesController');
     Route::resource('classes','ClassesController');
+    Route::resource('rooms','ClassRoomController');
+    
 });
