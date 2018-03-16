@@ -25,3 +25,6 @@ Route::namespace('School')->group(function (){
     Route::resource('rooms','ClassRoomController');
     Route::resource('subjects','SubjectController');
 });
+Route::namespace('Auth')->group(function (){
+    Route::resource('users','UserController');
+});
