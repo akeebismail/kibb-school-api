@@ -6,9 +6,9 @@ use function GuzzleHttp\Psr7\str;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Kibb\Http\Controllers\Controller;
-use Kibb\Kibb\School\Level\CreateLevelRequest;
+use Kibb\Http\Requests\Kibb\LevelRequest;
+use Kibb\Http\Resources\LevelResource;
 use Kibb\Kibb\School\Level\LevelRepository;
-use Kibb\Kibb\School\Level\LevelRequest;
 
 class LevelsController extends Controller
 {
@@ -22,33 +22,23 @@ class LevelsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return
+     * @return JsonResponse
      */
     public function index()
     {
         //all
         //return route('levels.update',1);
-        return $this->respond($this->_repo->listLevel());
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-
+        //return $this->respond($this->_repo->levels());
+        return $this->respond(new LevelResource($this->_repo->levels()));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param CreateLevelRequest $request
+     * @param LevelRequest $request
      * @return JsonResponse
      */
-    public function store(CreateLevelRequest $request)
+    public function store(LevelRequest $request)
     {
         //
 
@@ -58,7 +48,7 @@ class LevelsController extends Controller
         $data['details'] = $request->details;
         $repo = $this->_repo->createLevel($data);
 
-        return $this->respond($repo);
+        return $this->respond(new LevelResource($repo));
 
     }
 
@@ -74,17 +64,7 @@ class LevelsController extends Controller
         return $this->respond($this->_repo->find($id));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
 
-    }
 
     /**
      * Update the specified resource in storage.
@@ -113,5 +93,16 @@ class LevelsController extends Controller
             return $this->respondWithSuccess('Level Successfully Deleted');
         }
         return $this->respondNotFound();
+    }
+
+    /**
+     * Get All the classes associated with a level
+     * @param $id
+     * @return LevelResource
+     */
+    public function levelClasses($id) :LevelResource
+    {
+        return new LevelResource($this->_repo->levelClasses($id));
+       // return $this->respond($this->_repo->levelClasses($id));
     }
 }

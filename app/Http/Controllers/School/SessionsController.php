@@ -5,9 +5,8 @@ namespace Kibb\Http\Controllers\School;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Kibb\Http\Controllers\Controller;
-use Kibb\Kibb\School\Session\CreateSessionRequest;
+use Kibb\Http\Requests\Kibb\SessionRequest;
 use Kibb\Kibb\School\Session\SessionRepo;
-use Kibb\Kibb\School\Session\SessionRequest;
 
 class SessionsController extends Controller
 {
@@ -21,7 +20,7 @@ class SessionsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function index()
     {
@@ -33,10 +32,10 @@ class SessionsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param CreateSessionRequest $request
+     * @param SessionRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(CreateSessionRequest $request) :JsonResponse
+    public function store(SessionRequest $request) :JsonResponse
     {
         //
         $data = [];

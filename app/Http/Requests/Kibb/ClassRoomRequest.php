@@ -5,7 +5,7 @@
  * Date: 3/16/18
  * Time: 9:45 AM
  */
-namespace Kibb\Kibb\School\SchoolClass\Rooms;
+namespace Kibb\Http\Requests\Kibb;
 
 use Illuminate\Validation\Rule;
 use Kibb\Http\Requests\KibbFormRequest;

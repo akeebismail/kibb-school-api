@@ -5,7 +5,7 @@
  * Date: 3/14/18
  * Time: 10:33 PM
  */
-namespace Kibb\Kibb\School\SchoolClass\Type;
+namespace Kibb\Http\Requests\Kibb;
 
 
 use Kibb\Http\Requests\KibbFormRequest;

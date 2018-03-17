@@ -6,7 +6,7 @@
  * Time: 12:37 PM
  */
 
-namespace Kibb\Kibb\User;
+namespace Kibb\Http\Requests\Kibb;
 
 use Kibb\Http\Requests\KibbFormRequest;
 
