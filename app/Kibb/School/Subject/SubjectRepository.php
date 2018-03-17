@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Kibb\Kibb\Base\KibbBaseRepository;
+use Kibb\Model\Subject;
 
 class SubjectRepository extends KibbBaseRepository implements SUbjectInterface
 {
@@ -47,7 +48,7 @@ class SubjectRepository extends KibbBaseRepository implements SUbjectInterface
             $sub->level_id = $data['level_id'];
             $sub->save();
         }catch (QueryException $exception){
-            return $this->exception($exception);
+            return $this->queryException($exception);
         }
     }
 
@@ -62,9 +63,9 @@ class SubjectRepository extends KibbBaseRepository implements SUbjectInterface
             $sub->update();
             return $sub;
         }catch (ModelNotFoundException $exception){
-            return $exception;
+            return $this->notFoundException($exception);
         }catch (QueryException $exception){
-            return $this->exception($exception);
+            return $this->queryException($exception);
         }
     }
 
@@ -73,7 +74,7 @@ class SubjectRepository extends KibbBaseRepository implements SUbjectInterface
         try{
             return $this->model->find($id)->delete();
         }catch (QueryException $exception){
-            return $this->exception($exception);
+            return $this->queryException($exception);
         }
     }
 
@@ -82,7 +83,7 @@ class SubjectRepository extends KibbBaseRepository implements SUbjectInterface
         try{
             return $this->find($id);
         }catch (ModelNotFoundException $exception){
-            return $exception;
+            return $this->notFoundException($exception);
         }
     }
 
@@ -119,12 +120,5 @@ class SubjectRepository extends KibbBaseRepository implements SUbjectInterface
     public function getSubjectLevel(int $sub)
     {
         // TODO: Implement getSubjectLevel() method.
-    }
-
-    private function exception(QueryException $exception){
-        throw new SubjectException(
-            $exception->getMessage().' '.$exception->getSql(),
-            $exception->getCode()
-        );
     }
 }

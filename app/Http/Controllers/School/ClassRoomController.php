@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Kibb\Http\Controllers\Controller;
 use Kibb\Kibb\School\SchoolClass\Rooms\ClassRoomRepository;
 use Kibb\Kibb\School\SchoolClass\Rooms\CreateClassRoomRequest;
-use Kibb\Kibb\School\SchoolClass\Rooms\UpdateClassRoomRequest;
+use Kibb\Kibb\School\SchoolClass\Rooms\ClassRoomRequest;
 
 class ClassRoomController extends Controller
 {
@@ -55,11 +55,11 @@ class ClassRoomController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateClassRoomRequest $request
+     * @param ClassRoomRequest $request
      * @param  int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UpdateClassRoomRequest $request, $id)
+    public function update(ClassRoomRequest $request, $id)
     {
         //
         $rooms = $this->_repo->updateRoom($id, $request->all());

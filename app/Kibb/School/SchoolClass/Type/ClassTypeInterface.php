@@ -14,6 +14,7 @@ interface ClassTypeInterface extends BaseSchool
     public function createType($data =[]);
 
     public function updateType(int $id,$data =[]);
+    public function type(int $id);
 
     public function levels();
 

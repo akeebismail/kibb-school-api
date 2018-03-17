@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Kibb\Http\Controllers\Controller;
 use Kibb\Kibb\School\Level\CreateLevelRequest;
 use Kibb\Kibb\School\Level\LevelRepository;
-use Kibb\Kibb\School\Level\UpdateLevelRequest;
+use Kibb\Kibb\School\Level\LevelRequest;
 
 class LevelsController extends Controller
 {
@@ -89,11 +89,11 @@ class LevelsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateLevelRequest $request
+     * @param LevelRequest $request
      * @param  int $id
      * @return mixed
      */
-    public function update(UpdateLevelRequest $request, $id)
+    public function update(LevelRequest $request, $id)
     {
         //
          return $this->respond($this->_repo->updateLevel($id,$request->all()));

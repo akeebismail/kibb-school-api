@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Kibb\Kibb\Base\KibbBaseRepository;
+use Kibb\Model\Session;
 
 class SessionRepo extends KibbBaseRepository implements SessionInterface
 {
@@ -38,7 +39,7 @@ class SessionRepo extends KibbBaseRepository implements SessionInterface
         try{
             return $this->create($data);
         }catch (QueryException $exception){
-            throw new CreateSessionException("Unable to create School Session");
+            return $this->queryException($exception);
         }
     }
 
@@ -59,11 +60,9 @@ class SessionRepo extends KibbBaseRepository implements SessionInterface
             $session->update();
             return $session;
         }catch (QueryException $exception){
-            throw new CreateSessionException("Cannot update Session now");
+            return $this->queryException($exception);
         }catch (ModelNotFoundException $exception){
-            throw new SesseionNotFoundException(
-                $exception->getMessage().' '.$exception->getModel()
-            );
+            return $this->notFoundException($exception);
         }
     }
 
@@ -81,7 +80,6 @@ class SessionRepo extends KibbBaseRepository implements SessionInterface
     {
         // TODO: Implement startSession() method.
     }
-a
     public function endSession()
     {
         // TODO: Implement endSession() method.

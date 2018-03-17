@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Kibb\Http\Controllers\Controller;
 use Kibb\Kibb\School\Term\TermCreateRequest;
 use Kibb\Kibb\School\Term\TermRepository;
-use Kibb\Kibb\School\Term\UpdateTermRequest;
+use Kibb\Kibb\School\Term\TermRequest;
 
 class TermsController extends Controller
 {
@@ -63,11 +63,11 @@ class TermsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateTermRequest $request
+     * @param TermRequest $request
      * @param  int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UpdateTermRequest $request, $id)
+    public function update(TermRequest $request, $id)
     {
         //
        return $this->respond( $this->_repo->updateTerm($id, $request->all()));

@@ -10,11 +10,16 @@ namespace Kibb\Kibb\School\SchoolClass;
 use function GuzzleHttp\Psr7\str;
 use Illuminate\Database\QueryException;
 use Kibb\Kibb\Base\KibbBaseRepository;
+use Kibb\Model\Classes;
 
 class ClassRepository extends KibbBaseRepository implements ClassInterface {
     protected $model;
 
-    public function __construct(Classes$model)
+    /**
+     * ClassRepository constructor.
+     * @param Classes $model
+     */
+    public function __construct(Classes $model)
     {
         parent::__construct($model);
         $this->model = $model;
@@ -32,7 +37,7 @@ class ClassRepository extends KibbBaseRepository implements ClassInterface {
             $class['class_type_id'] = $data['class_type'];
             return $this->create($class);
         }catch (QueryException $exception){
-            throw new ClassExectionHandler($exception->getMessage().' '.$exception->getSql(),$exception->getCode());
+            return $this->queryException($exception);
         }
     }
 
@@ -47,7 +52,7 @@ class ClassRepository extends KibbBaseRepository implements ClassInterface {
             $class->update();
             return $class;
         }catch (QueryException $exception){
-            throw new ClassExectionHandler($exception->getMessage().' '.$exception->getSql(),$exception->getCode());
+            return $this->queryException($exception);
         }
     }
 

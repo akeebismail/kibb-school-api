@@ -8,8 +8,12 @@
 namespace Kibb\Kibb\School\Level;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
+use Kibb\Exceptions\KibbNotFoundException;
+use Kibb\Exceptions\KibbQueryException;
 use Kibb\Kibb\Base\KibbBaseRepository;
+use Kibb\Model\Levels;
 
 class LevelRepository extends KibbBaseRepository implements LevelInterface{
     protected $model;
@@ -25,10 +29,14 @@ class LevelRepository extends KibbBaseRepository implements LevelInterface{
         try{
             return $this->create($data);
         }catch (QueryException $exception){
-            throw new LevelExceptions($exception->getMessage().' '.$exception->getSql(),$exception->getCode());
+            $this->queryException($exception);
         }
     }
 
+    /**
+     * @param int $id
+     * @param array $data
+     */
     public function updateLevel(int $id, $data = [])
     {
         try{
@@ -37,10 +45,7 @@ class LevelRepository extends KibbBaseRepository implements LevelInterface{
             $level['details'] = $data['details'];
             return $this->model->find($id)->update($level);
         }catch (QueryException $exception){
-            throw new LevelExceptions(
-                $exception->getMessage().' '.$exception->getSql(),
-                $exception->getCode()
-            );
+            return $this->queryException($exception);
         }
     }
 
@@ -56,24 +61,44 @@ class LevelRepository extends KibbBaseRepository implements LevelInterface{
 
     public function attachClassTypeToLevel(int $id)
     {
-        // TODO: Implement attachClassTypeToLevel() method.
+
     }
 
+    /**
+     * @param int $id
+     */
     public function deleteLevel(int $id)
     {
         try{
             return $this->model->find($id)->delete();
         }catch (QueryException $exception){
-            throw new LevelExceptions(
-                $exception->getMessage().'  '. $exception->getSql(),
-                $exception->getCode()
-            );
-        } catch (\Exception $e) {
+            return $this->queryException($exception);
+        } catch (ModelNotFoundException $e) {
+            return $this->notFoundException($e);
         }
     }
 
-    public function listLevel(string $order = 'id', string $sort = 'desc', $except = [])
+    /**
+     * @param string $order
+     * @param string $sort
+     * @param array $except
+     * @return mixed
+     */
+    public function levels(string $order = 'id', string $sort = 'desc', $except = [])
     {
         return $this->model->orderBy($order, $sort)->get()->except($except);
     }
+
+    /**
+     * @param int $id
+     */
+    public function level(int $id)
+    {
+     try{
+         return $this->find($id);
+     }  catch (ModelNotFoundException $exception){
+         return $this->notFoundException($exception);
+     }
+    }
+
 }

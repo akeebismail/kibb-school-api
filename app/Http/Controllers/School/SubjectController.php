@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Kibb\Http\Controllers\Controller;
 use Kibb\Kibb\School\Subject\CreateSubjectRequest;
 use Kibb\Kibb\School\Subject\SubjectRepository;
-use Kibb\Kibb\School\Subject\UpdateSubjectRequest;
+use Kibb\Kibb\School\Subject\SubjectRequest;
 
 class SubjectController extends Controller
 {
@@ -56,11 +56,11 @@ class SubjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateSubjectRequest $request
+     * @param SubjectRequest $request
      * @param  int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UpdateSubjectRequest $request, $id)
+    public function update(SubjectRequest $request, $id)
     {
         $sub = $this->_repo->updateSubject($id,$request->all());
 

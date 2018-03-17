@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Kibb\Http\Controllers\Controller;
 use Kibb\Kibb\School\Session\CreateSessionRequest;
 use Kibb\Kibb\School\Session\SessionRepo;
-use Kibb\Kibb\School\Session\UpdateSessionRequest;
+use Kibb\Kibb\School\Session\SessionRequest;
 
 class SessionsController extends Controller
 {
@@ -63,11 +63,11 @@ class SessionsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateSessionRequest $request
+     * @param SessionRequest $request
      * @param  int $id
      * @return JsonResponse
      */
-    public function update(UpdateSessionRequest $request, $id)
+    public function update(SessionRequest $request, $id)
     {
         //
         $session = $this->_repo->updateSession($id,$request->all());

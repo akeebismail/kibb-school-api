@@ -4,7 +4,7 @@ namespace Kibb\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use Kibb\Http\Controllers\Controller;
-use Kibb\Kibb\User\CreateUserRequest;
+use Kibb\Kibb\User\UserRequest;
 use Kibb\Kibb\User\UpdateUserRequest;
 use Kibb\Kibb\User\UserRepository;
 
@@ -31,10 +31,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param CreateUserRequest $request
+     * @param UserRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(CreateUserRequest $request)
+    public function store(UserRequest $request)
     {
         //
         //dd($request->all());

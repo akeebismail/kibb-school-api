@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Kibb\Kibb\Base\KibbBaseRepository;
+use Kibb\Model\Terms;
 
 class TermRepository extends KibbBaseRepository implements TermInterface
 {
@@ -28,7 +29,7 @@ class TermRepository extends KibbBaseRepository implements TermInterface
         try{
             return $this->create($data);
         }catch (QueryException $exception){
-            return $this->exception($exception);
+            return $this->queryException($exception);
         }
     }
 
@@ -46,16 +47,12 @@ class TermRepository extends KibbBaseRepository implements TermInterface
             return $term;
 
         }catch (ModelNotFoundException $exception){
-            return $exception;
+            return $this->notFoundException($exception);
         }catch (QueryException $exception){
           return $this->exception($exception);
         }
     }
 
-    private function exception($exception){
-        throw new TermException($exception->getMessage(),$exception->getCode());
-
-    }
     public function deleteTerm(int $id)
     {
         return $this->model->find($id)->delete();

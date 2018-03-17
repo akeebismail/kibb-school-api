@@ -8,8 +8,10 @@
 namespace Kibb\Kibb\School\SchoolClass\Rooms;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Kibb\Kibb\Base\KibbBaseRepository;
+use Kibb\Model\ClassRoom;
 
 class ClassRoomRepository extends KibbBaseRepository implements ClassRoomInterface{
     public function __construct(ClassRoom $model)
@@ -17,11 +19,17 @@ class ClassRoomRepository extends KibbBaseRepository implements ClassRoomInterfa
         parent::__construct($model);
     }
 
-    public function allClassRooms(string $order = 'id', string $sort = 'desc', $except = [])
+    public function rooms(string $order = 'id', string $sort = 'desc', $except = [])
     {
         return $this->model->orderBy($order, $sort)->get()->except($except);
     }
-
+    public function room(int $id){
+        try{
+            return $this->find($id);
+        }catch (ModelNotFoundException $exception){
+            return $this->notFoundException($exception);
+        }
+    }
     public function createRoom($data = [])
     {
         $room = [];
@@ -33,9 +41,7 @@ class ClassRoomRepository extends KibbBaseRepository implements ClassRoomInterfa
         try {
             return $this->create($room);
         }catch (QueryException $exception){
-            throw new ClassRoomException(
-            $exception->getMessage().'  '.$exception->getSql()
-        );
+            return $this->queryException($exception);
         }
 
     }
@@ -52,7 +58,7 @@ class ClassRoomRepository extends KibbBaseRepository implements ClassRoomInterfa
            $room->update();
            return $room;
         }catch (QueryException $exception){
-            return $this->exceptions($exception);
+            $this->queryException($exception);
         }
     }
 
@@ -76,14 +82,7 @@ class ClassRoomRepository extends KibbBaseRepository implements ClassRoomInterfa
         try{
             return $this->model->find($id)->delete();
         }catch (QueryException $exception){
-            return $this->exceptions($exception);
+            return $this->queryException($exception);
         }
-    }
-
-    private function exceptions(QueryException $exception){
-        throw new ClassRoomException(
-            $exception->getMessage().'  '.$exception->getSql(),
-            $exception->getCode()
-        );
     }
 }

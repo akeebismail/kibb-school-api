@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Kibb\Kibb\Base\KibbBaseRepository;
-use Kibb\User;
+use Kibb\Model\User;
+
 
 class UserRepository extends KibbBaseRepository implements UserInterface
 {
@@ -21,12 +22,7 @@ class UserRepository extends KibbBaseRepository implements UserInterface
         parent::__construct($model);
         $this->model = $model;
     }
-    private function exception(QueryException $exception){
-        throw new UserException(
-            $exception->getMessage().'  '.$exception->getSql(),
-            $exception->getCode()
-            );
-    }
+
 
     public function users(string $order = 'id', string $sort = 'desc', $except = [])
     {
@@ -55,7 +51,7 @@ class UserRepository extends KibbBaseRepository implements UserInterface
             //attached user to account
             return $user;
         }catch (QueryException $exception){
-            return $this->exception($exception);
+            return $this->queryException($exception);
         }
     }
 
@@ -80,7 +76,7 @@ class UserRepository extends KibbBaseRepository implements UserInterface
             //attached user to account
             return $user;
         }catch (QueryException $exception){
-            return $this->exception($exception);
+            return $this->queryException($exception);
         }
     }
 
@@ -89,7 +85,7 @@ class UserRepository extends KibbBaseRepository implements UserInterface
         try{
             return $this->findOneOrFail($id);
         }catch (ModelNotFoundException $exception){
-            return $exception;
+            return $this->notFoundException($exception);
         }
     }
 
@@ -98,9 +94,9 @@ class UserRepository extends KibbBaseRepository implements UserInterface
         try{
             return $this->model->find($id)->delete();
         }catch (QueryException $ex){
-            return $this->exception($ex);
+            return $this->queryException($ex);
         }catch (ModelNotFoundException $exception){
-            return $exception;
+            return $this->notFoundException($exception);
         }
     }
 

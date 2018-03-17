@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Kibb\Http\Controllers\Controller;
 use Kibb\Kibb\School\SchoolClass\Type\ClassTypeRepo;
 use Kibb\Kibb\School\SchoolClass\Type\CreateClassTypeRequest;
-use Kibb\Kibb\School\SchoolClass\Type\UpdateClassTypeRequest;
+use Kibb\Kibb\School\SchoolClass\Type\ClassTypeRequest;
 
 class ClassTypesController extends Controller
 {
@@ -56,11 +56,11 @@ class ClassTypesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateClassTypeRequest $request
+     * @param ClassTypeRequest $request
      * @param  int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UpdateClassTypeRequest $request, $id)
+    public function update(ClassTypeRequest $request, $id)
     {
 
         return $this->respond($this->_repo->updateType($id, $request->all()));
