@@ -5,7 +5,7 @@ namespace Kibb\Http\Controllers\School;
 use Illuminate\Http\Request;
 use Kibb\Http\Controllers\Controller;
 use Kibb\Kibb\School\SchoolClass\ClassRepository;
-use Kibb\Kibb\School\SchoolClass\CreateClassRequest;
+use Kibb\Http\Requests\Kibb\ClassRequest;
 
 class ClassesController extends Controller
 {
@@ -28,14 +28,13 @@ class ClassesController extends Controller
     }
 
 
-
     /**
      * Store a newly created resource in storage.
      *
-     * @param CreateClassRequest $request
+     * @param ClassRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(CreateClassRequest $request)
+    public function store(ClassRequest $request)
     {
         //
         return $this->respond($this->_repo->createClass($request->all()));
@@ -44,35 +43,41 @@ class ClassesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  int $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
         //
+        return $this->respond($this->_repo->find($id));
     }
 
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param ClassRequest $request
+     * @param  int $id
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(ClassRequest $request, $id)
     {
-        //
+        return $this->respond($this->_repo->updateClass($id,$request->all()));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  int $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
         //
+        if ($this->_repo->delete($id)){
+            return $this->respondWithSuccess("Class Deleted Successfully");
+        }else{
+            return $this->respondWithError("Class Could not be deleted");
+        }
     }
 }

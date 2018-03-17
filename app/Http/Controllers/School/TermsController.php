@@ -4,9 +4,8 @@ namespace Kibb\Http\Controllers\School;
 
 use Illuminate\Http\Request;
 use Kibb\Http\Controllers\Controller;
-use Kibb\Kibb\School\Term\TermCreateRequest;
+use Kibb\Http\Requests\Kibb\TermRequest;
 use Kibb\Kibb\School\Term\TermRepository;
-use Kibb\Kibb\School\Term\TermRequest;
 
 class TermsController extends Controller
 {
@@ -29,12 +28,12 @@ class TermsController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new Term
      *
-     * @param TermCreateRequest $request
+     * @param TermRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(TermCreateRequest $request)
+    public function store(TermRequest $request)
     {
         $data = [];
         $data['name'] = $request->name;
@@ -86,7 +85,27 @@ class TermsController extends Controller
         }
     }
 
+    /**Get Term in Session
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function termSession($id){
         return $this->respond($this->_repo->termSession($id));
+    }
+
+    /**
+     * Start a new term for the session
+     * @param $id
+     */
+    public function startNewTerm($id){
+
+    }
+
+    /**
+     * End the current term
+     * @param $id
+     */
+    public function endTerm($id){
+
     }
 }

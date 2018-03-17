@@ -96,4 +96,21 @@ class SessionsController extends Controller
     public function sessionTerms($id){
         return $this->respond($this->_repo->sessionTerms($id));
     }
+
+    /**
+     * Start a new Session
+     * @param $id
+     */
+    public function startSession($id){
+
+    }
+
+    /**
+     *End Current Session
+     */
+    public function endSession(){
+
+    }
+
+
 }

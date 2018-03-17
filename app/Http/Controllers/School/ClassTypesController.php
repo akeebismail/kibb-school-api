@@ -5,9 +5,8 @@ namespace Kibb\Http\Controllers\School;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Kibb\Http\Controllers\Controller;
+use Kibb\Http\Requests\Kibb\ClassTypeRequest;
 use Kibb\Kibb\School\SchoolClass\Type\ClassTypeRepo;
-use Kibb\Kibb\School\SchoolClass\Type\CreateClassTypeRequest;
-use Kibb\Kibb\School\SchoolClass\Type\ClassTypeRequest;
 
 class ClassTypesController extends Controller
 {
@@ -32,10 +31,10 @@ class ClassTypesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param CreateClassTypeRequest $request
+     * @param ClassTypeRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(CreateClassTypeRequest $request)
+    public function store(ClassTypeRequest $request)
     {
         return $this->respond($this->_repo->createType($request->all()));
     }
