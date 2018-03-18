@@ -4,9 +4,8 @@ namespace Kibb\Http\Controllers\School;
 
 use Illuminate\Http\Request;
 use Kibb\Http\Controllers\Controller;
+use Kibb\Http\Requests\Kibb\ClassRoomRequest;
 use Kibb\Kibb\School\SchoolClass\Rooms\ClassRoomRepository;
-use Kibb\Kibb\School\SchoolClass\Rooms\CreateClassRoomRequest;
-use Kibb\Kibb\School\SchoolClass\Rooms\ClassRoomRequest;
 
 class ClassRoomController extends Controller
 {
@@ -24,17 +23,17 @@ class ClassRoomController extends Controller
     public function index()
     {
         //
-        return $this->respond($this->_repo->allClassRooms());
+        return $this->respond($this->_repo->rooms());
     }
 
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param CreateClassRoomRequest $request
+     * @param ClassRoomRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(CreateClassRoomRequest $request)
+    public function store(ClassRoomRequest $request)
     {
         $rooms = $this->_repo->createRoom($request->all());
         return $this->respond($rooms);
@@ -49,7 +48,7 @@ class ClassRoomController extends Controller
     public function show($id)
     {
         //
-        return $this->respond($this->_repo->find($id));
+        return $this->respond($this->_repo->room($id));
     }
 
     /**
