@@ -70,4 +70,14 @@ class RouteServiceProvider extends ServiceProvider
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
     }
+
+    public function tenantRoute()
+    {
+        Route::group([
+            'middleware' => \Kibb\Http\Middleware\IdentifyTenant::class,
+            'as'         => 'tenant:',
+        ], function () {
+            // Tenant routes here
+        });
+    }
 }
